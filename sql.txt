@@ -1,0 +1,87 @@
+CREATE TABLE IF NOT EXISTS `EventsCompanies` (
+ `CompanyID` int(11) NOT NULL AUTO_INCREMENT,
+ `CompanyName` varchar(50) NOT NULL,
+ `HeadOffice` varchar(50) NOT NULL,
+ `Services` varchar(100) NOT NULL,
+ `Email` varchar(50) NOT NULL,
+ `Password` varchar(50) NOT NULL,
+ `DateCreated` datetime NOT NULL,
+ 
+ PRIMARY KEY (`CompanyID`),
+ UNIQUE KEY `CompanyName`(`CompanyName`),
+ UNIQUE KEY `Email`(`Email`)
+
+ )ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ 
+
+CREATE TABLE IF NOT EXISTS `WeddingRates` 
+(
+
+`WeddingRatesID` int NOT NULL AUTO_INCREMENT,
+`CoEmail` varchar(50) DEFAULT NULL,
+
+`Low` int(11)  DEFAULT NULL,
+`Medium` int(11) DEFAULT NULL,
+`High` int(11) DEFAULT NULL,
+
+PRIMARY KEY(`WeddingRatesID`), 
+UNIQUE KEY(`CoEmail`),
+
+FOREIGN KEY (`CoEmail`) REFERENCES EventsCompanies(`Email`) ON DELETE CASCADE
+
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ 
+
+
+CREATE TABLE IF NOT EXISTS `ConcertRates` 
+(
+
+`ConcertRatesID` int NOT NULL AUTO_INCREMENT,
+`CoEmail` varchar(50) DEFAULT NULL,
+
+`Low` int(11)  DEFAULT NULL,
+`Medium` int(11) DEFAULT NULL,
+`High` int(11) DEFAULT NULL,
+
+PRIMARY KEY(`ConcertRatesID`), 
+UNIQUE KEY(`CoEmail`),
+
+FOREIGN KEY (`CoEmail`) REFERENCES EventsCompanies(`Email`) ON DELETE CASCADE
+
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS `CompanyServices` 
+(
+`ServiceID` int NOT NULL AUTO_INCREMENT,
+`ServiceName` varchar(50) DEFAULT NULL,
+`EmailAddress` varchar(50) DEFAULT NULL,
+
+PRIMARY KEY(`ServiceID`),
+
+
+
+FOREIGN KEY (`EmailAddress`) REFERENCES EventsCompanies(`Email`) ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
